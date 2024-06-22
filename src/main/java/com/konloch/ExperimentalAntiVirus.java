@@ -11,21 +11,21 @@ import java.util.List;
  */
 public class ExperimentalAntiVirus
 {
-	public static ExperimentalAntiVirus AEV;
+	public static ExperimentalAntiVirus EAV;
 	private List<Process> processPool = new ArrayList<>();
-	public AEVTray tray;
+	public EAVTray tray;
 	public boolean enabled = false;
 	
 	public static void main(String[] args) throws AWTException, IOException
 	{
-		AEV = new ExperimentalAntiVirus();
-		AEV.tray = new AEVTray();
+		EAV = new ExperimentalAntiVirus();
+		EAV.tray = new EAVTray();
 		
 		//add shutdown hook to disable all active processes
-		Runtime.getRuntime().addShutdownHook(new Thread(() -> AEV.disable()));
+		Runtime.getRuntime().addShutdownHook(new Thread(() -> EAV.disable()));
 		
 		//enable the pseudo protection
-		AEV.enable();
+		EAV.enable();
 	}
 	
 	//extract BlankProcess.exe to the various files, then run them
@@ -74,7 +74,7 @@ public class ExperimentalAntiVirus
 		
 		tray.trayIcon.setToolTip("Experimental Antivirus: Active");
 		tray.toggleButton.setLabel("Disable");
-		AEV.enabled = true;
+		EAV.enabled = true;
 	}
 	
 	//kill each process
@@ -87,7 +87,7 @@ public class ExperimentalAntiVirus
 		
 		tray.trayIcon.setToolTip("Experimental Antivirus: Disabled");
 		tray.toggleButton.setLabel("Enable");
-		AEV.enabled = false;
+		EAV.enabled = false;
 	}
 	
 	private void createFakeProcess(File fakeProcessFile) throws IOException

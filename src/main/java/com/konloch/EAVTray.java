@@ -10,17 +10,17 @@ import static com.konloch.ExperimentalAntiVirus.*;
  * @author Konloch
  * @since 6/20/2024
  */
-public class AEVTray
+public class EAVTray
 {
 	public SystemTray tray;
 	public TrayIcon trayIcon;
 	public PopupMenu trayPopup;
 	public MenuItem toggleButton;
 	
-	public AEVTray() throws AWTException, IOException
+	public EAVTray() throws AWTException, IOException
 	{
 		tray = SystemTray.getSystemTray();
-		trayIcon = new TrayIcon(ImageIO.read(AEVTray.class.getResourceAsStream("/icon.png")), "Experimental Antivirus: Disabled");
+		trayIcon = new TrayIcon(ImageIO.read(EAVTray.class.getResourceAsStream("/icon.png")), "Experimental Antivirus: Disabled");
 		trayPopup = new PopupMenu();
 		
 		toggleButton = new MenuItem("Enable");
@@ -28,10 +28,10 @@ public class AEVTray
 		{
 			try
 			{
-				if (AEV.enabled)
-					AEV.disable();
+				if (EAV.enabled)
+					EAV.disable();
 				else
-					AEV.enable();
+					EAV.enable();
 			}
 			catch (Exception ex)
 			{
